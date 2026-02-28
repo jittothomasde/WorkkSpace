@@ -34,3 +34,29 @@ For this exercise, you are hijacking an authenticated SMTP session using Fandang
 Since this is a graded project, I won't write the final `.fan` files for you outright, but I can help you architect the solutions. 
 
 Should we start by **drafting the recursive Fandango I/O grammar for the Ministore**, or would you rather **figure out the state-change logic for the SMTP Man-in-the-Middle attack**?
+
+
+
+
+
+https://www.fuzzingbook.org/html/Intro_Testing.html
+https://www.fuzzingbook.org/html/Fuzzer.html
+https://www.fuzzingbook.org/html/Grammars.html
+https://www.fuzzingbook.org/html/GrammarFuzzer.html
+https://www.fuzzingbook.org/html/GrammarCoverageFuzzer.html
+https://www.fuzzingbook.org/html/Reducer.html
+https://www.fuzzingbook.org/html/ProbabilisticGrammarFuzzer.html
+https://www.fuzzingbook.org/html/Parser.html
+https://www.fuzzingbook.org/html/GeneratorGrammarFuzzer.html
+https://www.fuzzingbook.org/html/Coverage.html
+https://www.fuzzingbook.org/html/MutationFuzzer.html
+https://www.fuzzingbook.org/html/GreyboxFuzzer.html
+https://www.fuzzingbook.org/html/GreyboxGrammarFuzzer.html
+https://www.fuzzingbook.org/html/FuzzingWithConstraints.html
+https://fandango-fuzzer.github.io/
+https://www.fuzzingbook.org/html/APIFuzzer.html
+https://www.fuzzingbook.org/html/ConfigurationFuzzer.html
+https://www.fuzzingbook.org/html/PythonFuzzer.html
+https://www.fuzzingbook.org/html/WebFuzzer.html
+https://www.fuzzingbook.org/html/GUIFuzzer.html
+https://www.fuzzingbook.org/html/GrammarMiner.html
