@@ -1,0 +1,36 @@
+I can certainly help you with **Project 2**, which is due very soon (March 3, 2026). 
+
+Based on the assignment sheet, this project focuses on **Protocol Testing** using **Fandango**, specifically interacting with stateful systems via I/O grammars. 
+
+Here is a breakdown of what you need to do for both exercises, along with the specific strategies and hints provided in your materials to tackle them.
+
+### Project 2-1: Testing a Protocol (Ministore) - 20 Points
+Your goal here is to write a Fandango IO grammar (in `ministore.fan`) that interacts with a Redis-like key-value store called "Ministore".
+
+**Key Requirements:**
+*   **Commands to Support:** `PING`, `GET <key>`, `SET <key> <value>`, `CLEAR`, and `COUNT`.
+*   **Statefulness:** You need to send *sequences* of commands and use ISLa/Fandango constraints to verify that the server's responses are correct based on the *current state* of the store (e.g., if you `SET a 1` and then `GET a`, the constraint should check that the response is `1`).
+*   **Implementation Tips:**
+    *   **Avoid standard repetitions:** Fandango limits `<symbol>+` and `<symbol>*` to 5 repetitions. You must use **recursive rules** instead (e.g., `<commands> ::= <command> | <command> <commands>`) to allow for long sequences of interactions.
+    *   **Derivation Tree Navigation:** To check the state of a key at a specific point in time, use `tree.prefix()` in your constraints to look only at the commands that were sent *before* the current command. You can also use `tree.parent`, `tree.get_root()`, and `str(tree)` to navigate and evaluate the tree.
+    *   **Formatting:** Every command and response must end with a newline `\n`.
+
+### Project 2-2: Man-in-the-Middle Attack (SMTP) - 10 Points
+For this exercise, you are hijacking an authenticated SMTP session using Fandango (in `man_in_the_middle.fan`) to send an unauthorized email.
+
+**The Attack Flow:**
+1.  **Forwarding:** Start by just forwarding all traffic between the `Client` and the `Server`.
+2.  **Trigger:** Watch the server responses. You are waiting for the "login successful" message, which starts with the code `235`.
+3.  **The Hijack:** Once you see the `235` message from the server, **drop it** so the client never sees it. From this point on, drop all further messages from the client.
+4.  **Injection:** Immediately after intercepting the `235`, use your Fandango grammar to inject your own SMTP commands to the server. Your goal is to send an email to `man-in-the-middle@example.com`.
+
+**Implementation Tips:**
+*   **Parties:** You are provided with 4 parties (`Server`, `Client`, `MimClient`, `MimServer`). Do not rename or add parties. 
+*   **Formatting:** SMTP commands must end with `\r\n` (e.g., `HELO example.com\r\n`).
+*   **Security:** You cannot hardcode any login credentials in your grammar. You are strictly stealing the session after the legitimate client authenticates.
+*   As with the first exercise, use recursive rules for repeated interactions instead of `+` or `*`.
+
+### How would you like to start?
+Since this is a graded project, I won't write the final `.fan` files for you outright, but I can help you architect the solutions. 
+
+Should we start by **drafting the recursive Fandango I/O grammar for the Ministore**, or would you rather **figure out the state-change logic for the SMTP Man-in-the-Middle attack**?
